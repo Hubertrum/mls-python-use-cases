@@ -1,6 +1,6 @@
 import csv
 import requests
-import json
+
 
 def get_url_data(url: str) -> list:
 
@@ -28,22 +28,23 @@ def save_as_csv(countries_list: list) -> None:
     # Write to CSV file
     with open(filename, "w", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=header)
-        
+
         # Write the header
         writer.writeheader()
-        
+
         # Write the data
         writer.writerows(countries)
 
     print(f"Country data has been written to {filename}")
 
 
-def run_all() -> None:
+def main() -> None:
 
-    countries_list = get_url_data("https://restcountries.com/v3.1/all?fields=name,ccn3") 
+    countries_list = get_url_data("https://restcountries.com/v3.1/all?fields=name,ccn3")
 
     save_as_csv(countries_list)
 
+
 if __name__ == "__main__":
 
-    run_all()
+    main()
